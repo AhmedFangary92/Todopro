@@ -18,18 +18,21 @@ All Todo List
 </style>
 <div class="row">
     <div class="col-md-6" style="margin:0 auto;">
-        <div class="card container-fluid" style="margin-top: 1rem;">
-            <div class="card-body">
-                <h5 class="card-text">{{eachtodo.priority}}</h5>
-                <h5 class="card-title">{{eachtodo.title}}</h5>
-                <p class="card-text">{{eachtodo.description}}</p>
-                <p class="card-text">{{eachtodo.created_at}}</p>
+        <form action="{% url 'submit' %}" method="POST">
+            {% csrf_token %}
+            <div class="card container-fluid" style="margin-top: 1rem;">
+                <div class="card-body">
+                    <h5 class="card-text">{{eachtodo.get_priority_display}}</h5>
+                    <h5 class="card-title">{{eachtodo.title}}</h5>
+                    <p class="card-text">{{eachtodo.description}}</p>
+                    <p class="card-text">{{eachtodo.created_at}}</p>
 
-              <a href="/delete/{{eachtodo.id}}" class="button">Delete</a>
-              <a href="/edit/{{eachtodo.id}}" class="button">Edit</a>
+                    <a href="/delete/{{eachtodo.pk}}" class="button">Delete</a>
+                    <a href="/edit/{{eachtodo.id}}" class="button">Edit</a>
 
+                </div>
             </div>
-        </div>
+        </form>    
     </div>
 </div>
 
